@@ -137,8 +137,8 @@ export const MOCK_APPLICATIONS: Application[] = [
 ];
 
 export const MOCK_USER_PROFILE: UserProfile = {
-  name: 'Student User',
-  email: 'student@nextstep.com',
+  name: 'Andile Ngubane',
+  email: 'andile.ngubane@example.com',
   profilePicture: 'https://picsum.photos/100/100',
   grade11Results: [
     { subject: 'Mathematics', grade: 85 },

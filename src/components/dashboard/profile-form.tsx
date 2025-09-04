@@ -8,12 +8,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { MOCK_USER_PROFILE } from '@/lib/mock-data';
 import { Separator } from '../ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { Trash2, PlusCircle } from 'lucide-react';
+import { Trash2, PlusCircle, Upload } from 'lucide-react';
 import {
   Table,
   TableBody,
@@ -32,17 +32,20 @@ const subjectGradeSchema = z.object({
 const profileSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters.'),
   email: z.string().email('Invalid email address.'),
-  profilePicture: z.string().url().optional(),
+  profilePicture: z.any().optional(),
   grade11Results: z.array(subjectGradeSchema),
+  grade11Document: z.any().optional(),
   grade12FirstTermResults: z.array(subjectGradeSchema),
+  grade12FirstTermDocument: z.any().optional(),
   grade12SecondTermResults: z.array(subjectGradeSchema),
+  grade12SecondTermDocument: z.any().optional(),
   preferredLocation: z.string(),
   preferredProgram: z.string(),
 });
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
 
-const GradeTable = ({ term, control, form }: { term: "grade11Results" | "grade12FirstTermResults" | "grade12SecondTermResults", control: any, form: any }) => {
+const GradeTable = ({ term, control }: { term: "grade11Results" | "grade12FirstTermResults" | "grade12SecondTermResults", control: any }) => {
     const { fields, append, remove } = useFieldArray({
         control,
         name: term,
@@ -90,7 +93,7 @@ const GradeTable = ({ term, control, form }: { term: "grade11Results" | "grade12
                                 />
                             </TableCell>
                             <TableCell>
-                                <Button variant="ghost" size="icon" onClick={() => remove(index)}>
+                                <Button type="button" variant="ghost" size="icon" onClick={() => remove(index)}>
                                     <Trash2 className="h-4 w-4 text-destructive" />
                                 </Button>
                             </TableCell>
@@ -126,6 +129,8 @@ export function ProfileForm() {
     defaultValues: MOCK_USER_PROFILE,
   });
 
+  const profilePictureRef = form.register("profilePicture");
+
   function onSubmit(data: ProfileFormValues) {
     console.log(data);
     toast({
@@ -147,7 +152,7 @@ export function ProfileForm() {
                 <div className="space-y-4">
                     <h3 className="text-lg font-medium">Personal Information</h3>
                     <div className="flex items-center gap-6">
-                        <FormField
+                       <FormField
                             control={form.control}
                             name="profilePicture"
                             render={({ field }) => (
@@ -155,11 +160,11 @@ export function ProfileForm() {
                                     <FormLabel>
                                         <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer">
                                             <AvatarImage src={field.value} alt="User avatar" data-ai-hint="person avatar" />
-                                            <AvatarFallback>U</AvatarFallback>
+                                            <AvatarFallback>{MOCK_USER_PROFILE.name.charAt(0)}</AvatarFallback>
                                         </Avatar>
                                     </FormLabel>
                                     <FormControl>
-                                        <Input type="file" className="hidden" accept="image/*" />
+                                         <Input type="file" className="hidden" accept="image/*" {...profilePictureRef} />
                                     </FormControl>
                                 </FormItem>
                             )}
@@ -198,19 +203,61 @@ export function ProfileForm() {
                 <Separator />
 
                 {/* Academic Information */}
-                <div className="space-y-4">
+                <div className="space-y-6">
                      <h3 className="text-lg font-medium">Academic Information</h3>
-                     <div className="space-y-4">
-                        <Label>Grade 11 Results</Label>
-                        <GradeTable term="grade11Results" control={form.control} form={form} />
+                     <div className="space-y-4 rounded-lg border p-4">
+                        <Label className="font-semibold">Grade 11 Results</Label>
+                        <GradeTable term="grade11Results" control={form.control} />
+                        <FormField
+                          control={form.control}
+                          name="grade11Document"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Proof of Results (Report Card/Transcript)</FormLabel>
+                              <FormControl>
+                                <Input type="file" accept=".pdf,image/*" {...form.register('grade11Document')} />
+                              </FormControl>
+                              <FormDescription>Upload a PDF or image file.</FormDescription>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
                      </div>
-                      <div className="space-y-4">
-                        <Label>Grade 12 First Term Results</Label>
-                        <GradeTable term="grade12FirstTermResults" control={form.control} form={form} />
+                      <div className="space-y-4 rounded-lg border p-4">
+                        <Label className="font-semibold">Grade 12 First Term Results</Label>
+                        <GradeTable term="grade12FirstTermResults" control={form.control} />
+                        <FormField
+                          control={form.control}
+                          name="grade12FirstTermDocument"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Proof of Results (Report Card/Transcript)</FormLabel>
+                              <FormControl>
+                                <Input type="file" accept=".pdf,image/*" {...form.register('grade12FirstTermDocument')} />
+                              </FormControl>
+                              <FormDescription>Upload a PDF or image file.</FormDescription>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
                      </div>
-                      <div className="space-y-4">
-                        <Label>Grade 12 Second Term Results</Label>
-                        <GradeTable term="grade12SecondTermResults" control={form.control} form={form} />
+                      <div className="space-y-4 rounded-lg border p-4">
+                        <Label className="font-semibold">Grade 12 Second Term Results</Label>
+                        <GradeTable term="grade12SecondTermResults" control={form.control} />
+                         <FormField
+                          control={form.control}
+                          name="grade12SecondTermDocument"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Proof of Results (Report Card/Transcript)</FormLabel>
+                              <FormControl>
+                                <Input type="file" accept=".pdf,image/*" {...form.register('grade12SecondTermDocument')} />
+                              </FormControl>
+                              <FormDescription>Upload a PDF or image file.</FormDescription>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
                      </div>
                 </div>
 

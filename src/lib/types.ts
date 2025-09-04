@@ -41,10 +41,13 @@ export type SubjectGrade = {
 export type UserProfile = {
   name: string;
   email: string;
-  profilePicture?: string;
+  profilePicture?: string | FileList;
   grade11Results: SubjectGrade[];
+  grade11Document?: FileList;
   grade12FirstTermResults: SubjectGrade[];
+  grade12FirstTermDocument?: FileList;
   grade12SecondTermResults: SubjectGrade[];
+  grade12SecondTermDocument?: FileList;
   preferredLocation: string;
   preferredProgram: string;
 };
