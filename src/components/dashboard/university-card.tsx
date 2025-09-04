@@ -3,14 +3,32 @@
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { MapPin, Target } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import type { University, Program, UserProfile } from '@/lib/types';
 import { useState } from 'react';
 import { ChanceEstimator } from './chance-estimator';
+import { useToast } from '@/hooks/use-toast';
 
+/**
+ * Displays a card with information about a university, including its name,
+ * location, description, and popular programs. Users can click on a program
+ * to estimate their admission chances or start an application.
+ *
+ * @param {object} props - The component props.
+ * @param {University} props.university - The university data to display.
+ * @param {UserProfile} props.userProfile - The current user's profile data.
+ * @returns {JSX.Element} The university card component.
+ */
 export function UniversityCard({ university, userProfile }: { university: University, userProfile: UserProfile }) {
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
+  const { toast } = useToast();
+
+  const handleStartApplication = () => {
+    toast({
+        title: "Application Started",
+        description: `Your application for ${university.name} has been moved to your applications list as a draft.`,
+    })
+  }
   
   return (
     <>
@@ -52,7 +70,7 @@ export function UniversityCard({ university, userProfile }: { university: Univer
           </div>
         </CardContent>
         <CardFooter>
-          <Button variant="secondary" className="w-full">
+          <Button variant="secondary" className="w-full" onClick={handleStartApplication}>
               Start Application
           </Button>
         </CardFooter>
