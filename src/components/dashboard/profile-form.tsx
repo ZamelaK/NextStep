@@ -32,6 +32,8 @@ const subjectGradeSchema = z.object({
 const profileSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters.'),
   email: z.string().email('Invalid email address.'),
+  phoneNumber: z.string().min(10, 'Please enter a valid phone number.'),
+  idNumber: z.string().min(1, 'ID Number is required.'),
   profilePicture: z.any().optional(),
   grade11Results: z.array(subjectGradeSchema),
   grade11Document: z.any().optional(),
@@ -130,6 +132,7 @@ export function ProfileForm() {
   });
 
   const profilePictureRef = form.register("profilePicture");
+  const uploadButtonRef = React.useRef<HTMLInputElement>(null);
 
   function onSubmit(data: ProfileFormValues) {
     console.log(data);
@@ -151,25 +154,29 @@ export function ProfileForm() {
                 {/* Personal Information */}
                 <div className="space-y-4">
                     <h3 className="text-lg font-medium">Personal Information</h3>
-                    <div className="flex items-center gap-6">
-                       <FormField
-                            control={form.control}
-                            name="profilePicture"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>
-                                        <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer">
-                                            <AvatarImage src={field.value} alt="User avatar" data-ai-hint="person avatar" />
+                    <div className="flex flex-col md:flex-row items-center gap-6">
+                        <div className="flex flex-col items-center gap-2">
+                           <FormField
+                                control={form.control}
+                                name="profilePicture"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Avatar className="h-24 w-24 border-2 border-primary">
+                                            <AvatarImage src={typeof field.value === 'string' ? field.value : undefined} alt="User avatar" data-ai-hint="person avatar" />
                                             <AvatarFallback>{MOCK_USER_PROFILE.name.charAt(0)}</AvatarFallback>
                                         </Avatar>
-                                    </FormLabel>
-                                    <FormControl>
-                                         <Input type="file" className="hidden" accept="image/*" {...profilePictureRef} />
-                                    </FormControl>
-                                </FormItem>
-                            )}
-                        />
-                        <div className="grid grid-cols-1 gap-4 flex-1">
+                                        <FormControl>
+                                             <Input type="file" className="hidden" accept="image/*" {...profilePictureRef} ref={uploadButtonRef} />
+                                        </FormControl>
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="button" variant="outline" size="sm" onClick={() => uploadButtonRef.current?.click()}>
+                                <Upload className="mr-2 h-4 w-4" />
+                                Edit Photo
+                            </Button>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1 w-full">
                             <FormField
                             control={form.control}
                             name="name"
@@ -191,6 +198,32 @@ export function ProfileForm() {
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
                                     <Input type="email" placeholder="your@email.com" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                                </FormItem>
+                            )}
+                            />
+                            <FormField
+                            control={form.control}
+                            name="phoneNumber"
+                            render={({ field }) => (
+                                <FormItem>
+                                <FormLabel>Phone Number</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="e.g. 0123456789" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                                </FormItem>
+                            )}
+                            />
+                             <FormField
+                            control={form.control}
+                            name="idNumber"
+                            render={({ field }) => (
+                                <FormItem>
+                                <FormLabel>ID Number</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Your ID Number" {...field} />
                                 </FormControl>
                                 <FormMessage />
                                 </FormItem>

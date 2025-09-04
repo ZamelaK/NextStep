@@ -41,6 +41,8 @@ export type SubjectGrade = {
 export type UserProfile = {
   name: string;
   email: string;
+  phoneNumber: string;
+  idNumber: string;
   profilePicture?: string | FileList;
   grade11Results: SubjectGrade[];
   grade11Document?: FileList;
