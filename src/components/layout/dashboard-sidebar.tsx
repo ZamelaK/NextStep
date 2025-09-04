@@ -1,3 +1,4 @@
+// src/components/layout/dashboard-sidebar.tsx
 "use client";
 
 import {
@@ -7,8 +8,9 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
-import { Home, User, Building2, FileText } from "lucide-react";
+import { Home, User, Building2, FileText, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { Logo } from "@/components/icons/logo";
@@ -18,6 +20,7 @@ import { Separator } from "@/components/ui/separator";
  * Renders the sidebar navigation for the dashboard layout.
  * It includes links to Dashboard, My Profile, Universities, and Applications.
  * The active link is highlighted based on the current pathname.
+ * A logout button is also included in the sidebar footer.
  *
  * @returns {JSX.Element} The dashboard sidebar component.
  */
@@ -33,7 +36,7 @@ export function DashboardSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="group-data-[collapsible=icon]:p-2">
+      <SidebarHeader>
         <div className="flex w-full items-center gap-2 p-2 group-data-[collapsible=icon]:justify-center">
           <Logo className="h-7 w-7 flex-shrink-0" />
           <h1 className="truncate text-xl font-headline font-semibold group-data-[collapsible=icon]:hidden">
@@ -56,6 +59,19 @@ export function DashboardSidebar() {
           ))}
         </SidebarMenu>
       </SidebarContent>
+      <Separator />
+      <SidebarFooter className="p-2">
+        <SidebarMenu>
+            <SidebarMenuItem>
+                <SidebarMenuButton asChild tooltip="Log out" size="lg">
+                    <Link href="/">
+                        <LogOut />
+                        <span>Log out</span>
+                    </Link>
+                </SidebarMenuButton>
+            </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
