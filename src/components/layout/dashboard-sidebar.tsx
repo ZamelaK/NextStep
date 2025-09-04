@@ -14,6 +14,13 @@ import { usePathname } from 'next/navigation';
 import { Logo } from "@/components/icons/logo";
 import { Separator } from "@/components/ui/separator";
 
+/**
+ * Renders the sidebar navigation for the dashboard layout.
+ * It includes links to Dashboard, My Profile, Universities, and Applications.
+ * The active link is highlighted based on the current pathname.
+ *
+ * @returns {JSX.Element} The dashboard sidebar component.
+ */
 export function DashboardSidebar() {
   const pathname = usePathname();
 

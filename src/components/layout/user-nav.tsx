@@ -13,6 +13,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from 'next/link';
 
+/**
+ * Renders the user navigation dropdown menu in the dashboard header.
+ * It displays the user's avatar and a dropdown with links to Profile, Applications, and Log out.
+ *
+ * @returns {JSX.Element} The user navigation component.
+ */
 export function UserNav() {
   return (
     <DropdownMenu>
