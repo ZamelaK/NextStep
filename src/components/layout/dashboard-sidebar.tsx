@@ -14,7 +14,6 @@ import { Home, User, Building2, FileText, LogOut, School } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { Logo } from "@/components/icons/logo";
-import { Separator } from "@/components/ui/separator";
 
 /**
  * Renders the sidebar navigation for the dashboard layout.
@@ -37,42 +36,42 @@ export function DashboardSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader>
-        <div className="flex w-full items-center gap-2 p-2 group-data-[collapsible=icon]:justify-center">
-          <Logo className="h-7 w-7 flex-shrink-0" />
-          <h1 className="truncate text-xl font-headline font-semibold group-data-[collapsible=icon]:hidden">
-            NextStep
-          </h1>
+        <div className="flex flex-col h-full">
+            <SidebarHeader>
+                <div className="flex w-full items-center gap-2 p-2 group-data-[collapsible=icon]:justify-center">
+                    <Logo className="h-7 w-7 flex-shrink-0" />
+                    <h1 className="truncate text-xl font-headline font-semibold group-data-[collapsible=icon]:hidden">
+                        NextStep
+                    </h1>
+                </div>
+            </SidebarHeader>
+            <SidebarContent className="flex-1">
+                <SidebarMenu className="p-2">
+                {menuItems.map((item) => (
+                    <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={item.label} size="lg">
+                        <Link href={item.href}>
+                        <item.icon />
+                        <span>{item.label}</span>
+                        </Link>
+                    </SidebarMenuButton>
+                    </SidebarMenuItem>
+                ))}
+                </SidebarMenu>
+            </SidebarContent>
+            <SidebarFooter className="mt-auto p-2">
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton asChild tooltip="Log out" size="lg">
+                            <Link href="/">
+                                <LogOut />
+                                <span>Log out</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+            </SidebarFooter>
         </div>
-      </SidebarHeader>
-      <Separator />
-      <SidebarContent>
-        <SidebarMenu className="p-2">
-          {menuItems.map((item) => (
-            <SidebarMenuItem key={item.href}>
-              <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={item.label} size="lg">
-                <Link href={item.href}>
-                  <item.icon />
-                  <span>{item.label}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
-      </SidebarContent>
-      <Separator />
-      <SidebarFooter className="p-2">
-        <SidebarMenu>
-            <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Log out" size="lg">
-                    <Link href="/">
-                        <LogOut />
-                        <span>Log out</span>
-                    </Link>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
     </Sidebar>
   );
 }
