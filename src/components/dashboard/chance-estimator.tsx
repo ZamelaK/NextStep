@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -18,6 +19,11 @@ interface ChanceEstimatorProps {
   onOpenChange: (open: boolean) => void;
 }
 
+const formatGrades = (grades: {subject: string, grade: number}[]) => {
+    if (!grades || grades.length === 0) return 'N/A';
+    return grades.map(g => `${g.subject}: ${g.grade}`).join(', ');
+}
+
 export function ChanceEstimator({ university, program, userProfile, open, onOpenChange }: ChanceEstimatorProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<EstimateAdmissionChanceOutput | null>(null);
@@ -31,9 +37,9 @@ export function ChanceEstimator({ university, program, userProfile, open, onOpen
       const res = await estimateAdmissionChance({
         universityName: university.name,
         programName: program.name,
-        grade11Results: userProfile.grade11Results,
-        grade12FirstTermResults: userProfile.grade12FirstTermResults,
-        grade12SecondTermResults: userProfile.grade12SecondTermResults || "N/A",
+        grade11Results: formatGrades(userProfile.grade11Results),
+        grade12FirstTermResults: formatGrades(userProfile.grade12FirstTermResults),
+        grade12SecondTermResults: formatGrades(userProfile.grade12SecondTermResults) || "N/A",
       });
       setResult(res);
     } catch (error) {

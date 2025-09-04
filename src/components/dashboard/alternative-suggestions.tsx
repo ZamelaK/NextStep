@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -19,13 +20,10 @@ interface AlternativeSuggestionsProps {
   admissionChance: number | null;
 }
 
-const parseGrades = (gradesStr: string): Record<string, string> => {
-    if (!gradesStr) return {};
-    return gradesStr.split(',').reduce((acc, pair) => {
-        const [course, grade] = pair.split(':');
-        if (course && grade) {
-            acc[course.trim()] = grade.trim();
-        }
+const parseGrades = (grades: {subject: string, grade: number}[]): Record<string, string> => {
+    if (!grades) return {};
+    return grades.reduce((acc, item) => {
+        acc[item.subject] = String(item.grade);
         return acc;
     }, {} as Record<string, string>);
 }

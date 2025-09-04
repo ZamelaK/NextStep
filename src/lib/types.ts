@@ -1,3 +1,4 @@
+
 export type Application = {
   id: string;
   university: string;
@@ -32,12 +33,18 @@ export type College = {
   image: string;
 };
 
+export type SubjectGrade = {
+  subject: string;
+  grade: number;
+}
+
 export type UserProfile = {
   name: string;
   email: string;
-  grade11Results: string;
-  grade12FirstTermResults: string;
-  grade12SecondTermResults: string;
+  profilePicture?: string;
+  grade11Results: SubjectGrade[];
+  grade12FirstTermResults: SubjectGrade[];
+  grade12SecondTermResults: SubjectGrade[];
   preferredLocation: string;
   preferredProgram: string;
 };

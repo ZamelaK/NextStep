@@ -1,3 +1,4 @@
+
 import type { University, Application, UserProfile, College } from './types';
 
 export const MOCK_UNIVERSITIES: University[] = [
@@ -138,9 +139,29 @@ export const MOCK_APPLICATIONS: Application[] = [
 export const MOCK_USER_PROFILE: UserProfile = {
   name: 'Student User',
   email: 'student@nextstep.com',
-  grade11Results: 'Mathematics: 85, English HL: 78, Life Sciences: 75, Physical Sciences: 72, Afrikaans FAL: 80, Life Orientation: 90',
-  grade12FirstTermResults: 'Mathematics: 88, English HL: 82, Life Sciences: 78, Physical Sciences: 76, Afrikaans FAL: 81, Life Orientation: 92',
-  grade12SecondTermResults: 'Mathematics: 90, English HL: 85, Life Sciences: 80, Physical Sciences: 79',
+  profilePicture: 'https://picsum.photos/100/100',
+  grade11Results: [
+    { subject: 'Mathematics', grade: 85 },
+    { subject: 'English HL', grade: 78 },
+    { subject: 'Life Sciences', grade: 75 },
+    { subject: 'Physical Sciences', grade: 72 },
+    { subject: 'Afrikaans FAL', grade: 80 },
+    { subject: 'Life Orientation', grade: 90 },
+  ],
+  grade12FirstTermResults: [
+    { subject: 'Mathematics', grade: 88 },
+    { subject: 'English HL', grade: 82 },
+    { subject: 'Life Sciences', grade: 78 },
+    { subject: 'Physical Sciences', grade: 76 },
+    { subject: 'Afrikaans FAL', grade: 81 },
+    { subject: 'Life Orientation', grade: 92 },
+  ],
+  grade12SecondTermResults: [
+     { subject: 'Mathematics', grade: 90 },
+    { subject: 'English HL', grade: 85 },
+    { subject: 'Life Sciences', grade: 80 },
+    { subject: 'Physical Sciences', grade: 79 },
+  ],
   preferredLocation: 'Gauteng, South Africa',
   preferredProgram: 'Computer Science',
 };
