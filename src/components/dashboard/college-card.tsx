@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -6,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
 import type { College } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 /**
  * Displays a card with information about a college.
@@ -16,12 +18,14 @@ import { useToast } from '@/hooks/use-toast';
  */
 export function CollegeCard({ college }: { college: College }) {
   const { toast } = useToast();
+  const router = useRouter();
 
   const handleStartApplication = () => {
     toast({
         title: "Application Started",
         description: `Your application for ${college.name} has been moved to your applications list as a draft.`,
     })
+    router.push('/dashboard/applications');
   }
   
   return (

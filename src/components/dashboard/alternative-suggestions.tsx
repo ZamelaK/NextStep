@@ -46,7 +46,7 @@ export function AlternativeSuggestions({ userProfile, initialUniversityChoices, 
             grades12FirstTerm: parseGrades(userProfile.grade12FirstTermResults),
             grades12SecondTerm: parseGrades(userProfile.grade12SecondTermResults),
             preferredLocation: userProfile.preferredLocation,
-            preferredProgram: userProfile.preferredProgram,
+            preferredPrograms: userProfile.preferredPrograms,
           };
 
           const [uniRes, colRes] = await Promise.all([

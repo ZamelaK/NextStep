@@ -18,7 +18,7 @@ const SuggestCollegesInputSchema = z.object({
   grades12FirstTerm: z.record(z.string(), z.string()).describe('Grade 12 first term results, as a map of course name to grade.'),
   grades12SecondTerm: z.record(z.string(), z.string()).describe('Grade 12 second term results, as a map of course name to grade.'),
   preferredLocation: z.string().describe('The preferred location for the college.'),
-  preferredProgram: z.string().describe('The preferred program of study.'),
+  preferredPrograms: z.array(z.string()).describe('The preferred programs of study.'),
   admissionChance: z.number().nullable().describe('The estimated admission chance to a university. If the chance is low (e.g., below 40%), colleges should be strongly considered.')
 });
 export type SuggestCollegesInput = z.infer<typeof SuggestCollegesInputSchema>;
@@ -58,7 +58,7 @@ Grade 12 Second Term Results:
 {{/each}}
 
 Preferred Location: {{{preferredLocation}}}
-Preferred Program: {{{preferredProgram}}}
+Preferred Programs: {{#each preferredPrograms}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}
 
 Suggest suitable colleges and programs that could be a good fit for this student. Consider pathways to university from college. 
 Provide a reason for each suggestion.

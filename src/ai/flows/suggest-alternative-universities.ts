@@ -18,7 +18,7 @@ const SuggestAlternativeUniversitiesInputSchema = z.object({
   grades12FirstTerm: z.record(z.string(), z.string()).describe('Grade 12 first term results, as a map of course name to grade.'),
   grades12SecondTerm: z.record(z.string(), z.string()).describe('Grade 12 second term results, as a map of course name to grade.'),
   preferredLocation: z.string().describe('The preferred location for the university.'),
-  preferredProgram: z.string().describe('The preferred program of study.'),
+  preferredPrograms: z.array(z.string()).describe('The preferred programs of study.'),
   initialUniversityChoices: z.array(z.string()).describe('The initial university choices of the student.'),
 });
 export type SuggestAlternativeUniversitiesInput = z.infer<typeof SuggestAlternativeUniversitiesInputSchema>;
@@ -57,7 +57,7 @@ Grade 12 Second Term Results:
 {{/each}}
 
 Preferred Location: {{{preferredLocation}}}
-Preferred Program: {{{preferredProgram}}}
+Preferred Programs: {{#each preferredPrograms}}{{{this}}}, {{/each}}
 Initial University Choices: {{#each initialUniversityChoices}}{{{this}}}, {{/each}}
 
 Suggest alternative universities that better match the student's qualifications. Provide a reason for each suggestion.

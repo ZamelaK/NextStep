@@ -19,7 +19,7 @@ export type University = {
 };
 
 export type Program = {
-  id: string;
+  id:string;
   name: string;
   requirements: string;
 };
@@ -51,5 +51,5 @@ export type UserProfile = {
   grade12SecondTermResults: SubjectGrade[];
   grade12SecondTermDocument?: FileList;
   preferredLocation: string;
-  preferredProgram: string;
+  preferredPrograms: string[];
 };

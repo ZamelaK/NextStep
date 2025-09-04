@@ -43,7 +43,7 @@ const profileSchema = z.object({
   grade12SecondTermResults: z.array(subjectGradeSchema),
   grade12SecondTermDocument: z.any().optional(),
   preferredLocation: z.string(),
-  preferredProgram: z.string(),
+  preferredPrograms: z.array(z.string().min(1, "Program preference cannot be empty.")).max(3, "You can add up to 3 preferences."),
 });
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
@@ -130,6 +130,11 @@ export function ProfileForm() {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: MOCK_USER_PROFILE,
+  });
+
+  const { fields: programFields, append: appendProgram, remove: removeProgram } = useFieldArray({
+    control: form.control,
+    name: "preferredPrograms",
   });
 
   const profilePictureRef = form.register("profilePicture");
@@ -315,19 +320,40 @@ export function ProfileForm() {
                                 </FormItem>
                             )}
                         />
-                        <FormField
-                            control={form.control}
-                            name="preferredProgram"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Preferred Program</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="e.g., Computer Science" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
+                        <div className="space-y-2">
+                             <FormLabel>Preferred Programs (up to 3)</FormLabel>
+                             {programFields.map((field, index) => (
+                                <FormField
+                                    key={field.id}
+                                    control={form.control}
+                                    name={`preferredPrograms.${index}`}
+                                    render={({ field }) => (
+                                    <FormItem className="flex items-center gap-2">
+                                        <FormControl>
+                                            <Input placeholder={`Preference ${index + 1}`} {...field} />
+                                        </FormControl>
+                                        <Button type="button" variant="ghost" size="icon" onClick={() => removeProgram(index)}>
+                                            <Trash2 className="h-4 w-4 text-destructive" />
+                                        </Button>
+                                        <FormMessage />
+                                    </FormItem>
+                                    )}
+                                />
+                             ))}
+                              {programFields.length < 3 && (
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => appendProgram('')}
+                                    className="mt-2"
+                                >
+                                    <PlusCircle className="mr-2 h-4 w-4"/>
+                                    Add Preference
+                                </Button>
                             )}
-                        />
+                             <FormMessage>{form.formState.errors.preferredPrograms?.message}</FormMessage>
+                        </div>
                     </div>
                 </div>
           </CardContent>

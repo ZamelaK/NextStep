@@ -165,5 +165,5 @@ export const MOCK_USER_PROFILE: UserProfile = {
     { subject: 'Physical Sciences', grade: 79 },
   ],
   preferredLocation: 'Gauteng, South Africa',
-  preferredProgram: 'Computer Science',
+  preferredPrograms: ['Computer Science', 'Information Technology'],
 };

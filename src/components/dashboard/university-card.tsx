@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -8,6 +9,7 @@ import type { University, Program, UserProfile } from '@/lib/types';
 import { useState } from 'react';
 import { ChanceEstimator } from './chance-estimator';
 import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 /**
  * Displays a card with information about a university, including its name,
@@ -22,12 +24,14 @@ import { useToast } from '@/hooks/use-toast';
 export function UniversityCard({ university, userProfile }: { university: University, userProfile: UserProfile }) {
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
   const { toast } = useToast();
+  const router = useRouter();
 
   const handleStartApplication = () => {
     toast({
         title: "Application Started",
         description: `Your application for ${university.name} has been moved to your applications list as a draft.`,
     })
+    router.push('/dashboard/applications');
   }
   
   return (
