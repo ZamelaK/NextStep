@@ -1,11 +1,14 @@
+
 "use client"
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { UserNav } from '@/components/layout/user-nav';
+import { useSidebar } from '@/components/ui/sidebar';
 
 export function DashboardHeader() {
+  const { isMobile } = useSidebar();
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
-        <div className="md:hidden">
+        <div className="flex items-center gap-2">
             <SidebarTrigger />
         </div>
         <div className="ml-auto">
