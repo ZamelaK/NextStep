@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarFooter,
 } from "@/components/ui/sidebar";
-import { Home, User, Building2, FileText, LogOut } from "lucide-react";
+import { Home, User, Building2, FileText, LogOut, School } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { Logo } from "@/components/icons/logo";
@@ -18,7 +18,7 @@ import { Separator } from "@/components/ui/separator";
 
 /**
  * Renders the sidebar navigation for the dashboard layout.
- * It includes links to Dashboard, My Profile, Universities, and Applications.
+ * It includes links to Dashboard, My Profile, Universities, Colleges, and Applications.
  * The active link is highlighted based on the current pathname.
  * A logout button is also included in the sidebar footer.
  *
@@ -31,6 +31,7 @@ export function DashboardSidebar() {
     { href: "/dashboard", label: "Dashboard", icon: Home },
     { href: "/dashboard/profile", label: "My Profile", icon: User },
     { href: "/dashboard/universities", label: "Universities", icon: Building2 },
+    { href: "/dashboard/colleges", label: "Colleges", icon: School },
     { href: "/dashboard/applications", label: "Applications", icon: FileText },
   ];
 

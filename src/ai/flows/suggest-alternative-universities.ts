@@ -60,7 +60,7 @@ Preferred Location: {{{preferredLocation}}}
 Preferred Program: {{{preferredProgram}}}
 Initial University Choices: {{#each initialUniversityChoices}}{{{this}}}, {{/each}}
 
-Suggest alternative universities or programs that better match the student's qualifications. Provide a reason for each suggestion.
+Suggest alternative universities that better match the student's qualifications. Provide a reason for each suggestion.
 Ensure that the alternative options are within the student's preferred location, if possible.
 Ensure that the response is valid JSON.`,
 });

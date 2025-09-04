@@ -23,6 +23,15 @@ export type Program = {
   requirements: string;
 };
 
+export type College = {
+  id: string;
+  name: string;
+  location: string;
+  description: string;
+  programs: Program[];
+  image: string;
+};
+
 export type UserProfile = {
   name: string;
   email: string;

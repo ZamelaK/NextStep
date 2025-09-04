@@ -114,6 +114,7 @@ export function ChanceEstimator({ university, program, userProfile, open, onOpen
         onOpenChange={setShowAlternatives}
         userProfile={userProfile}
         initialUniversityChoices={[university.name]}
+        admissionChance={result.chancePercentage}
     />}
     </>
   );

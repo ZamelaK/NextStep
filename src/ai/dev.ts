@@ -3,3 +3,4 @@ config();
 
 import '@/ai/flows/estimate-admission-chance.ts';
 import '@/ai/flows/suggest-alternative-universities.ts';
+import '@/ai/flows/suggest-colleges.ts';
