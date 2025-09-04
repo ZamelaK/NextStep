@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Link from 'next/link';
+import { MOCK_USER_PROFILE } from "@/lib/mock-data";
 
 /**
  * Renders the user navigation dropdown menu in the dashboard header.
@@ -20,22 +21,24 @@ import Link from 'next/link';
  * @returns {JSX.Element} The user navigation component.
  */
 export function UserNav() {
+  const user = MOCK_USER_PROFILE;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar className="h-10 w-10 border-2 border-primary">
-            <AvatarImage src="https://picsum.photos/40/40" alt="User avatar" data-ai-hint="person avatar" />
-            <AvatarFallback>U</AvatarFallback>
+            <AvatarImage src={user.profilePicture} alt="User avatar" data-ai-hint="person avatar" />
+            <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Student User</p>
+            <p className="text-sm font-medium leading-none">{user.name}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              student@nextstep.com
+              {user.email}
             </p>
           </div>
         </DropdownMenuLabel>

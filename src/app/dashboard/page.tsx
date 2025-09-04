@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileText, Hourglass, CheckCircle2, XCircle } from 'lucide-react';
-import { MOCK_APPLICATIONS } from '@/lib/mock-data';
+import { MOCK_APPLICATIONS, MOCK_USER_PROFILE } from '@/lib/mock-data';
 
 export const metadata: Metadata = {
   title: 'Dashboard - NextStep',
@@ -27,11 +27,12 @@ export default function DashboardPage() {
         accepted: MOCK_APPLICATIONS.filter(app => app.status === 'Accepted').length,
         rejected: MOCK_APPLICATIONS.filter(app => app.status === 'Rejected').length,
     }
+    const userProfile = MOCK_USER_PROFILE;
 
   return (
     <div className="flex flex-col gap-8">
         <div>
-            <h1 className="text-3xl font-bold font-headline">Welcome back, Student!</h1>
+            <h1 className="text-3xl font-bold font-headline">Welcome back, {userProfile.name.split(' ')[0]}!</h1>
             <p className="text-muted-foreground">Here's a summary of your application journey.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
