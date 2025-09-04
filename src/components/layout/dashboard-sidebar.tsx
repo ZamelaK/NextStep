@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Home, User, Building2, FileText, LogOut, School, PenSquare, Files } from "lucide-react";
 import Link from "next/link";
@@ -47,15 +48,15 @@ export function DashboardSidebar() {
     <Sidebar>
         <div className="flex flex-col h-full">
             <SidebarHeader>
-                <div className="flex w-full items-center gap-2 p-2 group-data-[collapsible=icon]:justify-center">
+                <div className="flex w-full items-center gap-2 p-2 group-data-[state=expanded]:pl-4">
                     <Logo className="h-7 w-7 flex-shrink-0" />
-                    <h1 className="truncate text-xl font-headline font-semibold group-data-[collapsible=icon]:hidden">
+                    <h1 className="truncate text-xl font-headline font-semibold group-data-[state=collapsed]:hidden">
                         NextStep
                     </h1>
                 </div>
             </SidebarHeader>
-            <SidebarContent className="flex-1 overflow-y-auto">
-                <SidebarMenu className="p-2 space-y-4">
+            <SidebarContent>
+                <SidebarMenu>
                   <div>
                     <SidebarMenu className="p-2">
                       {primaryItems.map((item) => (
@@ -102,9 +103,9 @@ export function DashboardSidebar() {
                   </div>
                 </SidebarMenu>
             </SidebarContent>
-             <div className="mt-auto p-2">
+             <SidebarFooter>
                  <Separator className="my-2" />
-                <SidebarMenu>
+                <SidebarMenu className="p-2">
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild tooltip="Log Out" size="lg">
                             <Link href="/">
@@ -114,7 +115,7 @@ export function DashboardSidebar() {
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
-            </div>
+            </SidebarFooter>
         </div>
     </Sidebar>
   );
