@@ -112,6 +112,9 @@ export function ChanceEstimator({ university, program, userProfile, open, onOpen
                     {isLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Estimating...</> : "Estimate My Chance"}
                 </Button>
             )}
+             {result && (
+                <Button onClick={handleClose}>Close</Button>
+            )}
         </DialogFooter>
       </DialogContent>
     </Dialog>
