@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { suggestAlternativeUniversities, SuggestAlternativeUniversitiesOutput } from '@/ai/flows/suggest-alternative-universities';
+import { suggestUniversities, SuggestUniversitiesOutput } from '@/ai/flows/suggest-universities';
 import { suggestColleges, SuggestCollegesOutput } from '@/ai/flows/suggest-colleges';
 import type { UserProfile } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
@@ -30,7 +30,7 @@ const parseGrades = (grades: {subject: string, grade: number}[]): Record<string,
 
 export function AlternativeSuggestions({ userProfile, initialUniversityChoices, open, onOpenChange, admissionChance }: AlternativeSuggestionsProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [universityResult, setUniversityResult] = useState<SuggestAlternativeUniversitiesOutput | null>(null);
+  const [universityResult, setUniversityResult] = useState<SuggestUniversitiesOutput | null>(null);
   const [collegeResult, setCollegeResult] = useState<SuggestCollegesOutput | null>(null);
   const { toast } = useToast();
 
@@ -50,7 +50,7 @@ export function AlternativeSuggestions({ userProfile, initialUniversityChoices, 
           };
 
           const [uniRes, colRes] = await Promise.all([
-             suggestAlternativeUniversities({
+             suggestUniversities({
               ...commonInput,
               initialUniversityChoices: initialUniversityChoices,
             }),
@@ -103,9 +103,9 @@ export function AlternativeSuggestions({ userProfile, initialUniversityChoices, 
               <ScrollArea className="max-h-[60vh] pr-4 mt-4">
                 <TabsContent value="universities">
                   <div className="space-y-4">
-                      {universityResult && universityResult.alternativeUniversities.length > 0 && (
+                      {universityResult && universityResult.suggestedUniversities.length > 0 && (
                           <div className="space-y-4">
-                              {universityResult.alternativeUniversities.map((alt, index) => (
+                              {universityResult.suggestedUniversities.map((alt, index) => (
                                   <Card key={`uni-${index}`}>
                                       <CardHeader>
                                           <CardTitle className="flex items-center gap-2">
@@ -121,7 +121,7 @@ export function AlternativeSuggestions({ userProfile, initialUniversityChoices, 
                               ))}
                           </div>
                       )}
-                      {universityResult && universityResult.alternativeUniversities.length === 0 && (
+                      {universityResult && universityResult.suggestedUniversities.length === 0 && (
                           <p>No alternative university suggestions found at this time.</p>
                       )}
                   </div>
