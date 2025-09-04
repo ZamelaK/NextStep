@@ -1,4 +1,3 @@
-
 // src/components/layout/dashboard-sidebar.tsx
 "use client";
 
@@ -9,7 +8,6 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Home, User, Building2, FileText, LogOut, School, PenSquare, Files } from "lucide-react";
 import Link from "next/link";
@@ -103,6 +101,19 @@ export function DashboardSidebar() {
                   </div>
                 </SidebarMenu>
             </SidebarContent>
+             <div className="mt-auto p-2">
+                 <Separator className="my-2" />
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton asChild tooltip="Log Out" size="lg">
+                            <Link href="/">
+                                <LogOut />
+                                <span>Log Out</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+            </div>
         </div>
     </Sidebar>
   );
