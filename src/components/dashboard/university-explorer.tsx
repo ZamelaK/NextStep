@@ -39,7 +39,7 @@ export function UniversityExplorer({ universities, userProfile }: { universities
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
       </div>
-      <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
         {filteredUniversities.map(uni => (
           <UniversityCard key={uni.id} university={uni} userProfile={userProfile} />
         ))}

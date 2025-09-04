@@ -13,7 +13,7 @@ export default function DashboardLayout({
         <DashboardSidebar />
         <SidebarInset>
           <DashboardHeader />
-          <div className="p-4 sm:p-6 lg:p-8">{children}</div>
+          <div className="p-4 md:p-6 lg:p-8">{children}</div>
         </SidebarInset>
       </div>
     </SidebarProvider>

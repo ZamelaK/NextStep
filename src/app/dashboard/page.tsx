@@ -34,7 +34,7 @@ export default function DashboardPage() {
             <h1 className="text-3xl font-bold font-headline">Welcome back, Student!</h1>
             <p className="text-muted-foreground">Here's a summary of your application journey.</p>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <StatCard title="Applications Submitted" value={stats.submitted} icon={FileText} />
             <StatCard title="Pending Review" value={stats.pending} icon={Hourglass} />
             <StatCard title="Offers Received" value={stats.accepted} icon={CheckCircle2} />
