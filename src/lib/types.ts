@@ -1,4 +1,5 @@
 
+
 export type Application = {
   id: string;
   university: string;
@@ -52,4 +53,12 @@ export type UserProfile = {
   grade12SecondTermDocument?: FileList;
   preferredLocation: string;
   preferredPrograms: string[];
+};
+
+export type Document = {
+  id: string;
+  name: string;
+  type: 'ID' | 'Transcript' | 'Essay' | 'Other';
+  uploadDate: string;
+  fileUrl: string;
 };

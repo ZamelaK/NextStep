@@ -1,5 +1,6 @@
 
-import type { University, Application, UserProfile, College } from './types';
+
+import type { University, Application, UserProfile, College, Document } from './types';
 
 export const MOCK_UNIVERSITIES: University[] = [
   {
@@ -167,3 +168,11 @@ export const MOCK_USER_PROFILE: UserProfile = {
   preferredLocation: 'Gauteng, South Africa',
   preferredPrograms: ['Computer Science', 'Information Technology'],
 };
+
+export const MOCK_DOCUMENTS: Document[] = [
+    { id: 'd1', name: 'ID Document', type: 'ID', uploadDate: '2023-10-15', fileUrl: '#' },
+    { id: 'd2', name: 'Grade 11 Report', type: 'Transcript', uploadDate: '2023-10-15', fileUrl: '#' },
+    { id: 'd3', name: 'UCT Motivation Letter', type: 'Essay', uploadDate: '2023-10-20', fileUrl: '#' },
+    { id: 'd4', name: 'Wits Motivation Letter Draft 1', type: 'Essay', uploadDate: '2023-10-22', fileUrl: '#' },
+    { id: 'd5', name: 'Proof of Residence', type: 'Other', uploadDate: '2023-11-01', fileUrl: '#' },
+];

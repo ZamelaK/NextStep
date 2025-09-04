@@ -1,7 +1,10 @@
+
 import type { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileText, Hourglass, CheckCircle2, XCircle } from 'lucide-react';
 import { MOCK_APPLICATIONS, MOCK_USER_PROFILE } from '@/lib/mock-data';
+import { ApplicationsStatusChart } from '@/components/dashboard/applications-status-chart';
+import { Separator } from '@/components/ui/separator';
 
 export const metadata: Metadata = {
   title: 'Dashboard - NextStep',
@@ -43,10 +46,21 @@ export default function DashboardPage() {
         </div>
         <Card>
             <CardHeader>
-                <CardTitle>Next Steps</CardTitle>
+                <CardTitle>Application Status Overview</CardTitle>
             </CardHeader>
             <CardContent>
-                <p>Ready to plan your future? Start by exploring universities or updating your profile.</p>
+                 <ApplicationsStatusChart applications={MOCK_APPLICATIONS} />
+            </CardContent>
+        </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle>Next Steps</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <p>Ready to plan your future? Here are some quick links to get you started:</p>
+                <div className="flex flex-wrap gap-4">
+                     <p>Explore universities, get essay feedback, or manage your documents.</p>
+                </div>
             </CardContent>
         </Card>
     </div>

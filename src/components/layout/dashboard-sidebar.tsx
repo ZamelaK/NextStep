@@ -11,10 +11,11 @@ import {
   SidebarMenuButton,
   SidebarFooter,
 } from "@/components/ui/sidebar";
-import { Home, User, Building2, FileText, LogOut, School } from "lucide-react";
+import { Home, User, Building2, FileText, LogOut, School, PenSquare, Files } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { Logo } from "@/components/icons/logo";
+import { Separator } from "../ui/separator";
 
 /**
  * Renders the sidebar navigation for the dashboard layout.
@@ -27,13 +28,21 @@ import { Logo } from "@/components/icons/logo";
 export function DashboardSidebar() {
   const pathname = usePathname();
 
-  const menuItems = [
+  const primaryItems = [
     { href: "/dashboard", label: "Dashboard", icon: Home },
     { href: "/dashboard/profile", label: "My Profile", icon: User },
-    { href: "/dashboard/universities", label: "Universities", icon: Building2 },
-    { href: "/dashboard/colleges", label: "Colleges", icon: School },
     { href: "/dashboard/applications", label: "Applications", icon: FileText },
   ];
+
+  const secondaryItems = [
+    { href: "/dashboard/universities", label: "Universities", icon: Building2 },
+    { href: "/dashboard/colleges", label: "Colleges", icon: School },
+  ];
+  
+  const toolsItems = [
+    { href: "/dashboard/essay-helper", label: "Essay Helper", icon: PenSquare },
+    { href: "/dashboard/documents", label: "My Documents", icon: Files },
+  ]
 
   return (
     <Sidebar>
@@ -47,17 +56,51 @@ export function DashboardSidebar() {
                 </div>
             </SidebarHeader>
             <SidebarContent className="flex-1 overflow-y-auto">
-                <SidebarMenu className="p-2">
-                {menuItems.map((item) => (
-                    <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={item.label} size="lg">
-                        <Link href={item.href}>
-                        <item.icon />
-                        <span>{item.label}</span>
-                        </Link>
-                    </SidebarMenuButton>
-                    </SidebarMenuItem>
-                ))}
+                <SidebarMenu className="p-2 space-y-4">
+                  <div>
+                    <SidebarMenu className="p-2">
+                      {primaryItems.map((item) => (
+                        <SidebarMenuItem key={item.href}>
+                          <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={item.label} size="lg">
+                            <Link href={item.href}>
+                              <item.icon />
+                              <span>{item.label}</span>
+                            </Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenu>
+                  </div>
+                  <Separator />
+                   <div>
+                    <SidebarMenu className="p-2">
+                      {secondaryItems.map((item) => (
+                        <SidebarMenuItem key={item.href}>
+                          <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={item.label} size="lg">
+                            <Link href={item.href}>
+                              <item.icon />
+                              <span>{item.label}</span>
+                            </Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenu>
+                  </div>
+                   <Separator />
+                   <div>
+                    <SidebarMenu className="p-2">
+                      {toolsItems.map((item) => (
+                        <SidebarMenuItem key={item.href}>
+                          <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={item.label} size="lg">
+                            <Link href={item.href}>
+                              <item.icon />
+                              <span>{item.label}</span>
+                            </Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenu>
+                  </div>
                 </SidebarMenu>
             </SidebarContent>
             <SidebarFooter className="mt-auto p-2">
