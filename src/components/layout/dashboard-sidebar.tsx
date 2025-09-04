@@ -46,7 +46,7 @@ export function DashboardSidebar() {
                     </h1>
                 </div>
             </SidebarHeader>
-            <SidebarContent className="flex-1">
+            <SidebarContent className="flex-1 overflow-y-auto">
                 <SidebarMenu className="p-2">
                 {menuItems.map((item) => (
                     <SidebarMenuItem key={item.href}>
