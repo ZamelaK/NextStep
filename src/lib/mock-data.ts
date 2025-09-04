@@ -13,7 +13,7 @@ export const MOCK_UNIVERSITIES: University[] = [
       { id: 'p-za1-2', name: 'Bachelor of Science in Engineering', requirements: 'APS: 38+' },
       { id: 'p-za1-3', name: 'Bachelor of Medicine & Surgery (MBChB)', requirements: 'APS: 42+' },
     ],
-    image: 'https://picsum.photos/800/600?random=5',
+    image: 'https://picsum.photos/800/600?random=1',
   },
   {
     id: 'za2',
@@ -26,7 +26,7 @@ export const MOCK_UNIVERSITIES: University[] = [
       { id: 'p-za2-2', name: 'BA in Law', requirements: 'APS: 34+' },
       { id: 'p-za2-3', name: 'BEngSc in Biomedical Engineering', requirements: 'APS: 39+' },
     ],
-    image: 'https://picsum.photos/800/600?random=6',
+    image: 'https://picsum.photos/800/600?random=2',
   },
   {
     id: 'za3',
@@ -39,7 +39,7 @@ export const MOCK_UNIVERSITIES: University[] = [
       { id: 'p-za3-2', name: 'BSc in AgriSciences', requirements: 'Avg. 75%+' },
       { id: 'p-za3-3', name: 'BA in Social Dynamics', requirements: 'Avg. 80%+' },
     ],
-    image: 'https://picsum.photos/800/600?random=7',
+    image: 'https://picsum.photos/800/600?random=3',
   },
   {
     id: 'za4',
@@ -52,7 +52,7 @@ export const MOCK_UNIVERSITIES: University[] = [
       { id: 'p-za4-2', name: 'BEd in Foundation Phase Teaching', requirements: 'APS: 28+' },
       { id: 'p-za4-3', name: 'BIT - Information Technology', requirements: 'APS: 30+' },
     ],
-    image: 'https://picsum.photos/800/600?random=8',
+    image: 'https://picsum.photos/800/600?random=4',
   },
    {
     id: 'za5',
@@ -65,7 +65,7 @@ export const MOCK_UNIVERSITIES: University[] = [
       { id: 'p-za5-2', name: 'BSc in Life and Environmental Sciences', requirements: 'APS: 26+' },
       { id: 'p-za5-3', name: 'BA in Human Resource Management', requirements: 'APS: 24+' },
     ],
-    image: 'https://picsum.photos/800/600?random=12',
+    image: 'https://picsum.photos/800/600?random=5',
   },
 ];
 
@@ -79,7 +79,7 @@ export const MOCK_COLLEGES: College[] = [
       { id: 'cp1', name: 'Diploma in IT Support', requirements: 'National Senior Certificate' },
       { id: 'cp2', name: 'BCom in Management Marketing', requirements: 'Bachelor\'s Pass' },
     ],
-    image: 'https://picsum.photos/800/600?random=9',
+    image: 'https://picsum.photos/800/600?random=6',
   },
   {
     id: 'c2',
@@ -90,7 +90,7 @@ export const MOCK_COLLEGES: College[] = [
       { id: 'cp3', name: 'Diploma in Business Management', requirements: 'Diploma Pass' },
       { id: 'cp4', name: 'Higher Certificate in Event Management', requirements: 'Higher Certificate Pass' },
     ],
-    image: 'https://picsum.photos/800/600?random=10',
+    image: 'https://picsum.photos/800/600?random=7',
   },
   {
     id: 'c3',
@@ -101,7 +101,7 @@ export const MOCK_COLLEGES: College[] = [
       { id: 'cp5', name: 'BSc in Information Technology', requirements: 'Bachelor\'s Pass with Maths' },
       { id: 'cp6', name: 'Higher Certificate in Marketing', requirements: 'National Senior Certificate' },
     ],
-    image: 'https://picsum.photos/800/600?random=11',
+    image: 'https://picsum.photos/800/600?random=8',
   },
   {
     id: 'c4',
@@ -112,7 +112,7 @@ export const MOCK_COLLEGES: College[] = [
       { id: 'cp7', name: 'Diploma in Journalism', requirements: 'Diploma Pass' },
       { id: 'cp8', name: 'Higher Certificate in Logistics and Supply Chain Management', requirements: 'Higher Certificate Pass' },
     ],
-    image: 'https://picsum.photos/800/600?random=13',
+    image: 'https://picsum.photos/800/600?random=9',
   },
   {
     id: 'c5',
@@ -123,7 +123,7 @@ export const MOCK_COLLEGES: College[] = [
       { id: 'cp9', name: 'Diploma in Public Administration', requirements: 'National Senior Certificate' },
       { id: 'cp10', name: 'National Diploma in Sound Engineering', requirements: 'National Senior Certificate' },
     ],
-    image: 'https://picsum.photos/800/600?random=14',
+    image: 'https://picsum.photos/800/600?random=10',
   }
 ];
 
