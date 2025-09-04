@@ -103,18 +103,6 @@ export function DashboardSidebar() {
                   </div>
                 </SidebarMenu>
             </SidebarContent>
-            <SidebarFooter className="mt-auto p-2">
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton asChild tooltip="Log out" size="lg">
-                            <Link href="/">
-                                <LogOut />
-                                <span>Log out</span>
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                </SidebarMenu>
-            </SidebarFooter>
         </div>
     </Sidebar>
   );
